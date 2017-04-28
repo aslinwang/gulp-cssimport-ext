@@ -97,6 +97,7 @@ module.exports = function cssImport(options) {
 					}
 					promises.push(readFile(importFile, "utf8").then(function(contents) {
 						// 获取插件contents中的sprite图
+						importFile = importFile.split(path.sep).join('/');
 						if(options.fePlugin && importFile.indexOf(options.fePlugin.dir) != -1) {// 配置了前端插件
 							var pluginNameReg = new RegExp(options.fePlugin.dir.replace('/', '') + '\/([^\/]*)\/');
 							var pluginName = importFile.match(pluginNameReg);
