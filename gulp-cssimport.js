@@ -38,10 +38,10 @@ module.exports = function cssImport(options) {
 			return x.trim();
 		});
 	}
-	
+
 	var stream;
 	var cssCount = 0;
-	
+
 	function fileContents(vinyl, encoding, callback) {
 
 		if (!stream) {
@@ -104,15 +104,15 @@ module.exports = function cssImport(options) {
 							if(pluginName.length > 1) {
 								pluginName = pluginName[1]
 
-								var sprites = contents.match(/sprite\/.*\.png/g); // 去重
+								var sprites = contents.match(/sprite\/.*\.png|.*\.svg/g); // 去重
 								sprites = Array.from(new Set(sprites));
 								var spriteDir = path.parse(importFile).dir + '/sprite/';
-								contents = contents.replace(/sprite\/(.*\.png)/g, `sprite/${pluginName}-$1`)
+								contents = contents.replace(/sprite\/(.*\.png|.*\.svg)/g, `sprite/${pluginName}-$1`)
 
 								options.fePlugin.callback(sprites, spriteDir, pluginName);
 							}
 						}
-						
+
 						result.importFile = importFile;
 						result.contents = contents;
 						return result;
@@ -202,7 +202,7 @@ function resolveImportFile(pathDirectory, importPath, includePaths) {
 	}
 	for (var i = 0; i < includePaths.length; i++) {
 		var includePath = includePaths[i];
-		
+
 		var d1 = path.resolve(pathDirectory, includePath);
 		if (d1 === pathDirectory) {
 			continue;
