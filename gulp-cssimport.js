@@ -111,6 +111,16 @@ module.exports = function cssImport(options) {
 
 								options.fePlugin.callback(sprites, spriteDir, pluginName);
 							}
+							else {
+								if (options.fePlugin.error) { // 处理出错
+									options.fePlugin.error();
+								}
+							}
+						}
+						else {
+							if (options.fePlugin.error) { // 处理出错
+								options.fePlugin.error();
+							}
 						}
 
 						result.importFile = importFile;

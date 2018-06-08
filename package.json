@@ -1,6 +1,6 @@
 {
   "name": "gulp-cssimport-ext",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Parses a CSS file, finds imports, grabs the content of the linked file and replaces the import statement with it. support deal with fe plugin sprite",
   "main": "gulp-cssimport.js",
   "scripts": {
